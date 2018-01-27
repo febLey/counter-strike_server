@@ -1,4 +1,4 @@
-# Counter-Strike 1.6 Dedicated Server Docker Image
+# Counter-Strike 1.6 dedicated server Docker Image
 
 ## About
 
@@ -10,7 +10,7 @@ This image is based on `debian` and the game server is set up via steamcmd.
 docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp counter-strike_server
 ```
 
-## Availibe env
+## Availibe environment variables
 
 ```
 PORT 27015
@@ -32,8 +32,8 @@ You can add you own `server.cfg`, `banned.cfg` and `listip.cfg` by mounting the 
 docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp -v /path/to/your/configs:/configs counter-strike_server
 ```
 
-Keep in mind the server.cfg file can override the settings from your environment variables:
-`HOMENAME`, `MAP`, `MAXPLAYERS` and `SV_LAN`
+Keep in mind the server.cfg file can override the settings from your environment variables:  
+`MAP`, `MAXPLAYERS` and `SV_LAN`
 
 ### Example server.cfg
 
