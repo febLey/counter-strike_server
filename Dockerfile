@@ -41,9 +41,9 @@ RUN ln -s ../Steam/linux32 sdk32
 # link configs
 WORKDIR /home/server/Steam/steamapps/common/Half-Life/cstrike
 RUN mv server.cfg /configs/ && \
+    mv mapcycle.txt /configs/mapcycle.txt &&\
     touch /configs/listip.cfg && \
     touch /configs/banned.cfg && \
-    touch /configs/mapcycle.txt &&\
     ln -s /configs/server.cfg && \
     ln -s /configs/listip.cfg && \
     ln -s /configs/banned.cfg && \
