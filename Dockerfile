@@ -32,7 +32,7 @@ RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.t
 RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit || true
 RUN ./steamcmd.sh +login anonymous +app_update 70 validate +quit || true
 RUN ./steamcmd.sh +login anonymous +app_update 10 validate +quit || true
-RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit || true
+RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit
 
 # link sdk
 WORKDIR /home/server/.steam
