@@ -1,8 +1,7 @@
 # Counter-Strike 1.6 dedicated server Docker Image
 
-## About
-
 This image is based on `debian` and the game server is set up via steamcmd.
+It aims to provide a simple method to set up a basic and also customizable Counter-Strike 1.6 server via Docker.
 
 ## Quick start
 
@@ -20,13 +19,15 @@ MAXPLAYERS 16
 SV_LAN 0
 ```
 
-## custom config files
+## Custom config files
 
-You can add you own `server.cfg`, `banned.cfg` and `listip.cfg` by mounting the config directory to your host machine. You can do this by adding a volumes parameter to your docker run command.
+You can add you own `server.cfg`, `banned.cfg`, `listip.cfg` and `mapcycle.txt` by mounting the config directory to your host machine. You can do this by adding a volumes parameter to your docker run command.
 
 ``` bash
 -v /path/to/your/configs:/configs
 ```
+
+The complete command looks like this:
 
 ``` bash
 docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp -v /path/to/your/configs:/configs counter-strike_server
