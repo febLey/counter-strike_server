@@ -103,8 +103,8 @@ services:
     volumes:
       - /path/to/your/banned.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/banned.cfg
       - /path/to/your/listip.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/listip.cfg
-      - /path/to/your/mapcycle.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/mapcycle.cfg
       - /path/to/your/server.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/server.cfg
+      - /path/to/your/mapcycle.txt:/root/Steam/steamapps/common/Half-Life/cstrike/mapcycle.txt
     environment:
       - PORT=27015
       - CLIENTPORT=27005
