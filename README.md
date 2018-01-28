@@ -1,4 +1,4 @@
-# Counter-Strike 1.6 dedicated server Docker Image
+# Counter-Strike 1.6 Server Docker Image
 
 This image is based on `debian` and the game server is set up via steamcmd.
 It aims to provide a simple method to set up a basic and also customizable Counter-Strike 1.6 server via Docker.
