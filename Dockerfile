@@ -12,9 +12,6 @@ RUN dpkg --add-architecture i386
 RUN apt-get update && \
     apt-get -qqy install lib32gcc1 curl
 
-# create configs directory
-RUN mkdir configs
-
 # create directories
 WORKDIR /root
 RUN mkdir Steam .steam
@@ -32,17 +29,6 @@ RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit
 # link sdk
 WORKDIR /root/.steam
 RUN ln -s ../Steam/linux32 sdk32
-
-# link configs
-WORKDIR /root/Steam/steamapps/common/Half-Life/cstrike
-RUN mv server.cfg /configs/ && \
-    mv mapcycle.txt /configs/mapcycle.txt &&\
-    touch /configs/listip.cfg && \
-    touch /configs/banned.cfg && \
-    ln -s /configs/server.cfg && \
-    ln -s /configs/listip.cfg && \
-    ln -s /configs/banned.cfg && \
-    ln -s /configs/mapcycle.txt
 
 # expose ports
 EXPOSE $PORT/udp

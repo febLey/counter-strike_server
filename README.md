@@ -21,16 +21,16 @@ SV_LAN 0
 
 ## Custom config files
 
-You can add you own `server.cfg`, `banned.cfg`, `listip.cfg` and `mapcycle.txt` by mounting the config directory to your host machine. You can do this by adding a volumes parameter to your docker run command.
+You can add you own `server.cfg`, `banned.cfg`, `listip.cfg` and `mapcycle.txt` by linking them as volumes into the image.
 
 ``` bash
--v /path/to/your/configs:/configs
+-v /path/to/your/server.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/server.cfg
 ```
 
 The complete command looks like this:
 
 ``` bash
-docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp -v /path/to/your/configs:/configs counter-strike_server
+docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp -v /path/to/your/server.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/server.cfg counter-strike_server
 ```
 
 Keep in mind the server.cfg file can override the settings from your environment variables:  
@@ -89,7 +89,10 @@ services:
       - 27005:27005
       - 1200:1200/udp 
     volumes:
-      - /path/to/your/configs:/configs
+      - /path/to/your/banned.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/banned.cfg
+      - /path/to/your/listip.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/listip.cfg
+      - /path/to/your/mapcycle.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/mapcycle.cfg
+      - /path/to/your/server.cfg:/root/Steam/steamapps/common/Half-Life/cstrike/server.cfg
     environment:
       - PORT=27015
       - CLIENTPORT=27005
