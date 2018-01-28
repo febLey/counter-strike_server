@@ -21,10 +21,10 @@ WORKDIR /root/Steam
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
 # install CS 1.6 via steamcmd
-RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit || true
+RUN ./steamcmd.sh +login anonymous +force_install_dir /hlds +app_update 90 validate +quit || true
 RUN ./steamcmd.sh +login anonymous +app_update 70 validate +quit || true
 RUN ./steamcmd.sh +login anonymous +app_update 10 validate +quit || true
-RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit
+RUN ./steamcmd.sh +login anonymous +force_install_dir /hlds +app_update 90 validate +quit
 
 # link sdk
 WORKDIR /root/.steam
@@ -38,5 +38,5 @@ EXPOSE $PORT
 EXPOSE $CLIENTPORT
 
 # start server
-WORKDIR /root/Steam/steamapps/common/Half-Life
+WORKDIR /hlds
 ENTRYPOINT ./hlds_run -game cstrike -strictportbind -ip 0.0.0.0 -port $PORT +clientport $CLIENTPORT +sv_lan $SV_LAN +map $MAP -maxplayers $MAXPLAYERS
