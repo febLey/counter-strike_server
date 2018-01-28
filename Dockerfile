@@ -15,17 +15,12 @@ RUN apt-get update && \
 # create configs directory
 RUN mkdir configs
 
-# create user
-RUN useradd -m server
-RUN chown server /configs
-USER server
-
 # create directories
-WORKDIR /home/server
+WORKDIR /root
 RUN mkdir Steam .steam
 
 # download steamcmd
-WORKDIR /home/server/Steam
+WORKDIR /root/Steam
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
 # install CS 1.6 via steamcmd
@@ -35,11 +30,11 @@ RUN ./steamcmd.sh +login anonymous +app_update 10 validate +quit || true
 RUN ./steamcmd.sh +login anonymous +app_update 90 validate +quit
 
 # link sdk
-WORKDIR /home/server/.steam
+WORKDIR /root/.steam
 RUN ln -s ../Steam/linux32 sdk32
 
 # link configs
-WORKDIR /home/server/Steam/steamapps/common/Half-Life/cstrike
+WORKDIR /root/Steam/steamapps/common/Half-Life/cstrike
 RUN mv server.cfg /configs/ && \
     mv mapcycle.txt /configs/mapcycle.txt &&\
     touch /configs/listip.cfg && \
@@ -57,5 +52,5 @@ EXPOSE $PORT
 EXPOSE $CLIENTPORT
 
 # start server
-WORKDIR /home/server/Steam/steamapps/common/Half-Life
+WORKDIR /root/Steam/steamapps/common/Half-Life
 ENTRYPOINT ./hlds_run -game cstrike -strictportbind -ip 0.0.0.0 -port $PORT +clientport $CLIENTPORT +sv_lan $SV_LAN +map $MAP -maxplayers $MAXPLAYERS
