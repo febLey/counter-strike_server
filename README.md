@@ -5,9 +5,17 @@ It aims to provide a simple method to set up a basic and also customizable Count
 
 ## Quick start
 
+The fastest way to set this up is to pull the image and start it via `docker run`.
+
+``` bash
+docker pull febley/counter-strike_server
+```
+
 ``` bash
 docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp counter-strike_server
 ```
+
+However it's recommend to run the server via `docker-compose`. You can find an example docker-compose.yml below.
 
 ## Availibe environment variables
 
@@ -72,6 +80,10 @@ exec banned.cfg
 ```
 
 ## Docker Compose
+
+Create a `docker-compose.yml` file and start the server via `docker-compose up -d`.
+
+### Example docker-compose.yml
 
 ``` yml
 version: '3'
