@@ -17,7 +17,7 @@ docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p
 
 However it's recommend to run the server via `docker-compose`. You can find an example docker-compose.yml below.
 
-## Availibe environment variables
+## Available environment variables
 
 ```
 PORT 27015
