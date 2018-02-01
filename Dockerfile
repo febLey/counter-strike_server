@@ -2,7 +2,6 @@ FROM debian
 
 # define default env variables
 ENV PORT 27015
-ENV CLIENTPORT 27005
 ENV MAP de_dust2
 ENV MAXPLAYERS 16
 ENV SV_LAN 0
@@ -30,13 +29,6 @@ RUN ./steamcmd.sh +login anonymous +force_install_dir /hlds +app_update 90 valid
 WORKDIR /root/.steam
 RUN ln -s ../Steam/linux32 sdk32
 
-# expose ports
-EXPOSE $PORT/udp
-EXPOSE $CLIENTPORT/udp
-EXPOSE 1200/udp
-EXPOSE $PORT
-EXPOSE $CLIENTPORT
-
 # start server
 WORKDIR /hlds
-ENTRYPOINT ./hlds_run -game cstrike -strictportbind -ip 0.0.0.0 -port $PORT +clientport $CLIENTPORT +sv_lan $SV_LAN +map $MAP -maxplayers $MAXPLAYERS
+ENTRYPOINT ./hlds_run -game cstrike -strictportbind -ip 0.0.0.0 -port $PORT +sv_lan $SV_LAN +map $MAP -maxplayers $MAXPLAYERS

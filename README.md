@@ -12,7 +12,7 @@ docker pull febley/counter-strike_server
 ```
 
 ``` bash
-docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp counter-strike_server
+docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 counter-strike_server
 ```
 
 However it's recommend to run the server via `docker-compose`. You can find an example docker-compose.yml below.
@@ -21,7 +21,6 @@ However it's recommend to run the server via `docker-compose`. You can find an e
 
 ```
 PORT 27015
-CLIENTPORT 27005
 MAP de_dust2
 MAXPLAYERS 16
 SV_LAN 0
@@ -38,7 +37,7 @@ You can add you own `server.cfg`, `banned.cfg`, `listip.cfg` and `mapcycle.txt` 
 The complete command looks like this:
 
 ``` bash
-docker run --name counter-strike_server -p 27015:27015/udp -p 27005:27005/udp -p 27015:27015 -p 27005:27005 -p 1200:1200/udp -v /path/to/your/server.cfg:/hlds/cstrike/server.cfg counter-strike_server
+docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 -v /path/to/your/server.cfg:/hlds/cstrike/server.cfg counter-strike_server
 ```
 
 Keep in mind the server.cfg file can override the settings from your environment variables:  
@@ -96,10 +95,7 @@ services:
     restart: always
     ports:
       - 27015:27015/udp
-      - 27005:27005/udp
       - 27015:27015
-      - 27005:27005
-      - 1200:1200/udp 
     volumes:
       - /path/to/your/banned.cfg:/hlds/cstrike/banned.cfg
       - /path/to/your/listip.cfg:/hlds/cstrike/listip.cfg
@@ -107,7 +103,6 @@ services:
       - /path/to/your/mapcycle.txt:/hlds/cstrike/mapcycle.txt
     environment:
       - PORT=27015
-      - CLIENTPORT=27005
       - MAP=de_dust2
       - MAXPLAYERS=16
       - SV_LAN=0
