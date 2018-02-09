@@ -19,12 +19,12 @@ However it's recommend to run the server via `docker-compose`. You can find an e
 
 ## Available environment variables
 
-```
-PORT 27015
-MAP de_dust2
-MAXPLAYERS 16
-SV_LAN 0
-```
+| Variable   | Value    |
+| ---------- | -------- |
+| PORT       | 27015    |
+| MAP        | de_dust2 |
+| MAXPLAYERS | 16       |
+| SV_LAN     | 0        |
 
 ## Custom config files
 
@@ -89,10 +89,15 @@ version: '3'
 
 services:
 
-  csserver:
+  hlds:
     container_name: counter-strike_server
     image: febley/counter-strike_server:latest
     restart: always
+    environment:
+      - PORT=27015
+      - MAP=de_dust2
+      - MAXPLAYERS=16
+      - SV_LAN=0
     ports:
       - 27015:27015/udp
       - 27015:27015
@@ -101,9 +106,4 @@ services:
       - /path/to/your/listip.cfg:/hlds/cstrike/listip.cfg
       - /path/to/your/server.cfg:/hlds/cstrike/server.cfg
       - /path/to/your/mapcycle.txt:/hlds/cstrike/mapcycle.txt
-    environment:
-      - PORT=27015
-      - MAP=de_dust2
-      - MAXPLAYERS=16
-      - SV_LAN=0
 ```
