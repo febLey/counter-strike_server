@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:9
 
 # labels
 ARG BUILD_DATE
