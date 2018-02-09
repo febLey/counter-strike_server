@@ -1,5 +1,12 @@
 FROM debian
 
+# labels
+ARG BUILD_DATE
+ARG VCS_REF
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/febLey/counter-strike_server"
+
 # define default env variables
 ENV PORT 27015
 ENV MAP de_dust2
