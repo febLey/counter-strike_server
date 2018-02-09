@@ -3,6 +3,8 @@
 This image is based on `debian` and the game server is set up via steamcmd.
 It aims to provide a simple method to set up a basic and also customizable Counter-Strike 1.6 server via Docker.
 
+[![Docker Automated build](https://img.shields.io/docker/automated/febley/counter-strike_server.svg)](https://hub.docker.com/r/febley/counter-strike_server/builds/) [![Docker Build Status](https://img.shields.io/docker/build/febley/counter-strike_server.svg)](https://hub.docker.com/r/febley/counter-strike_server/builds/)
+
 ## Quick start
 
 The fastest way to set this up is to pull the image and start it via `docker run`.
