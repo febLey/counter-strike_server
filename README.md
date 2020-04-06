@@ -16,7 +16,7 @@ docker pull febley/counter-strike_server
 ```
 
 ``` bash
-docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 counter-strike_server
+docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 febley/counter-strike_server:latest
 ```
 
 However it's recommend to run the server via `docker-compose`. You can find an example docker-compose.yml below.
