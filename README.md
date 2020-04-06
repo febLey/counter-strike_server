@@ -41,7 +41,7 @@ You can add you own `server.cfg`, `banned.cfg`, `listip.cfg` and `mapcycle.txt` 
 The complete command looks like this:
 
 ``` bash
-docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 -v /path/to/your/server.cfg:/hlds/cstrike/server.cfg counter-strike_server
+docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 -v /path/to/your/server.cfg:/hlds/cstrike/server.cfg febley/counter-strike_server:latest
 ```
 
 Keep in mind the server.cfg file can override the settings from your environment variables:  
